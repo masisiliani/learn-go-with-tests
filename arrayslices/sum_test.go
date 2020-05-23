@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 	"testing"
 )
 
@@ -14,6 +15,17 @@ func TestSum(t *testing.T) {
 
 		if got != expected {
 			t.Errorf("expected %d but got %d, %v", expected, got, numbers)
+		}
+	})
+}
+
+func TestSumAll(t *testing.T) {
+	t.Run("sucess to sum all items from slices and return new slice with results", func(t *testing.T) {
+		got := SumAll([]int{1, 2}, []int{3, 5})
+		expected := []int{3, 8}
+
+		if !reflect.DeepEqual(got, expected) {
+			t.Errorf("expected %v but got %v", expected, got)
 		}
 	})
 }

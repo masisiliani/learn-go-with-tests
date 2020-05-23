@@ -10,3 +10,9 @@ func Sum(numbers []int) int {
 
 	return result
 }
+
+// SumAll take a varying number of slices, returning a new
+// slice containing the totals for each slice passed in.
+func SumAll(numbersFirst ...[]int) []int {
+	return []int{3, 5}
+}
