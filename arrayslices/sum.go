@@ -14,11 +14,10 @@ func Sum(numbers []int) int {
 // SumAll take a varying number of slices, returning a new
 // slice containing the totals for each slice passed in.
 func SumAll(numbersFirst ...[]int) []int {
-	lenghSlices := len(numbersFirst)
-	sliceSumAll := make([]int, lenghSlices)
+	var sliceSumAll []int
 
-	for index, numbers := range numbersFirst {
-		sliceSumAll[index] = Sum(numbers)
+	for _, numbers := range numbersFirst {
+		sliceSumAll = append(sliceSumAll, Sum(numbers))
 	}
 
 	return sliceSumAll
