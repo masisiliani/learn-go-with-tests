@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestSum(t *testing.T) {
 
@@ -13,4 +16,11 @@ func TestSum(t *testing.T) {
 			t.Errorf("expected %d but got %d, %v", expected, got, numbers)
 		}
 	})
+}
+
+func ExampleSum() {
+	fibonacciNumbers := []int{1, 2, 3, 5, 8, 13}
+	output := Sum(fibonacciNumbers)
+	fmt.Println(output)
+	// Output: 32
 }
