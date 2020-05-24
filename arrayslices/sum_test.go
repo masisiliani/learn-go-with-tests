@@ -31,21 +31,23 @@ func TestSumAll(t *testing.T) {
 }
 
 func TestSumAllTails(t *testing.T) {
-	t.Run("success to calculate the totals of the 'tails' of each slice", func(t *testing.T) {
-		got := SumAllTails([]int{1, 2}, []int{3, 5, 5})
-		expected := []int{2, 10}
+	checkSumEqual := func(t *testing.T, got, expected []int) {
+		t.Helper()
 
 		if !reflect.DeepEqual(got, expected) {
 			t.Errorf("expected %v but got %v", expected, got)
 		}
+	}
+
+	t.Run("success to calculate the totals of the 'tails' of each slice", func(t *testing.T) {
+		got := SumAllTails([]int{1, 2}, []int{3, 5, 5})
+		expected := []int{2, 10}
+		checkSumEqual(t, got, expected)
 	})
 	t.Run("success when it pass a empty slice", func(t *testing.T) {
 		got := SumAllTails([]int{}, []int{3, 5, 5})
 		expected := []int{0, 10}
-
-		if !reflect.DeepEqual(got, expected) {
-			t.Errorf("expected %v but got %v", expected, got)
-		}
+		checkSumEqual(t, got, expected)
 	})
 }
 
