@@ -32,3 +32,14 @@ type Circle struct {
 func (c Circle) Area() float64 {
 	return math.Pi * c.Radius * c.Radius
 }
+
+// Triangle is a struct with values of rectagle object
+type Triangle struct {
+	Base    float64
+	PHeight float64
+}
+
+// Area returns the area of a rectangle
+func (t Triangle) Area() float64 {
+	return 0.5 * t.Base * t.PHeight
+}
