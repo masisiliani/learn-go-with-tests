@@ -13,12 +13,22 @@ func Sum(numbers []int) int {
 
 // SumAll take a varying number of slices, returning a new
 // slice containing the totals for each slice passed in.
-func SumAll(numbersFirst ...[]int) []int {
+func SumAll(numbersSlices ...[]int) []int {
 	var sliceSumAll []int
-
-	for _, numbers := range numbersFirst {
+	for _, numbers := range numbersSlices {
 		sliceSumAll = append(sliceSumAll, Sum(numbers))
 	}
 
 	return sliceSumAll
+}
+
+// SumAll take a varying number of slices, returning a new
+// slice containing the totals for each slice passed in.
+func SumAllTails(numbersSlices ...[]int) []int {
+	var sliceSumTails []int
+	for _, numbers := range numbersSlices {
+		tail := numbers[1:]
+		sliceSumTails = append(sliceSumTails, Sum(tail))
+	}
+	return sliceSumTails
 }
