@@ -44,3 +44,8 @@ func (d Dictionary) Add(word, definition string) error {
 
 	return nil
 }
+
+//Update insert new word in dictionary
+func (d Dictionary) Update(word, newDefinition string) {
+	d[word] = newDefinition
+}
