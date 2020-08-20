@@ -65,7 +65,6 @@ func TestUpdate(t *testing.T) {
 
 		assertError(t, err, ErrWordDoesNotExist)
 	})
-
 }
 
 func assertStrings(t *testing.T, got string, want string) {

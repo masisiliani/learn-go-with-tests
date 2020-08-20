@@ -51,11 +51,14 @@ func (d Dictionary) Add(word, definition string) error {
 //Update insert new word in dictionary
 func (d Dictionary) Update(word, newDefinition string) error {
 	_, err := d.Search(word)
+
 	switch err {
+	case ErrNotFound:
+		return ErrWordDoesNotExist
 	case nil:
 		d[word] = newDefinition
 	default:
-		return ErrWordDoesNotExist
+		return err
 	}
 
 	return nil
