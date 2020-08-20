@@ -6,15 +6,15 @@ func TestSearch(t *testing.T) {
 	dictionary := Dictionary{"test": "this is just a test"}
 
 	t.Run("success when word is in dictionary", func(t *testing.T) {
-		got, _ := dictionary.Search(dictionary, "test")
+		got, _ := dictionary.Search("test")
 		want := "this is just a test"
 
 		assertStrings(t, got, want)
 	})
 
 	t.Run("fails when the word is not in dictionary", func(t *testing.T) {
-		_, err := dictionary.Search(dictionary, "test")
-		want := "this is just a test"
+		_, err := dictionary.Search("unknown")
+		want := "could not find the word you were looking for"
 
 		if err == nil {
 			t.Errorf("expected to get an error.")
@@ -29,6 +29,6 @@ func assertStrings(t *testing.T, got string, want string) {
 	t.Helper()
 
 	if got != want {
-		t.Errorf("got %q want %q given, %q", got, want, "test")
+		t.Errorf("got %q want %q", got, want)
 	}
 }
