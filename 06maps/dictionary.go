@@ -1,17 +1,22 @@
 package main
 
-import "errors"
-
 //Dictionary type
 type Dictionary map[string]string
 
-var (
+const (
 	//ErrNotFound is an error when the word does not exists in dictionary
-	ErrNotFound = errors.New("could not find the word you were looking for")
+	ErrNotFound = DictionaryErr("could not find the word you were looking for")
 
 	//ErrWordExists occurs when word already exixts
-	ErrWordExists = errors.New("word already exixts")
+	ErrWordExists = DictionaryErr("word already exixts")
 )
+
+//DictionaryErr struct represents error on this package
+type DictionaryErr string
+
+func (e DictionaryErr) Error() string {
+	return string(e)
+}
 
 //Search method return the content of a word filter is it is in dictionary map
 func (d Dictionary) Search(word string) (string, error) {
