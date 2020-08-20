@@ -5,8 +5,13 @@ import "errors"
 //Dictionary type
 type Dictionary map[string]string
 
-//ErrNotFound is an error when the word does not exists in dictionary
-var ErrNotFound = errors.New("could not find the word you were looking for")
+var (
+	//ErrNotFound is an error when the word does not exists in dictionary
+	ErrNotFound = errors.New("could not find the word you were looking for")
+
+	//ErrWordExists occurs when word already exixts
+	ErrWordExists = errors.New("word already exixts")
+)
 
 //Search method return the content of a word filter is it is in dictionary map
 func (d Dictionary) Search(word string) (string, error) {
@@ -20,6 +25,13 @@ func (d Dictionary) Search(word string) (string, error) {
 }
 
 //Add insert new word in dictionary
-func (d Dictionary) Add(word, definition string) {
-	d[word] = definition
+func (d Dictionary) Add(word, definition string) error {
+	_, err := d.Search(word)
+	if err == ErrNotFound {
+		d[word] = definition
+		return nil
+	}
+
+	return ErrWordExists
+
 }
