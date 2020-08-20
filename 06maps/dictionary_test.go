@@ -3,10 +3,30 @@ package main
 import "testing"
 
 func TestSearch(t *testing.T) {
-	dictionary := map[string]string{"test": "this is just a test"}
+	dictionary := Dictionary{"test": "this is just a test"}
 
-	got := Search(dictionary, "test")
-	want := "this is just a test"
+	t.Run("success when word is in dictionary", func(t *testing.T) {
+		got, _ := dictionary.Search(dictionary, "test")
+		want := "this is just a test"
+
+		assertStrings(t, got, want)
+	})
+
+	t.Run("fails when the word is not in dictionary", func(t *testing.T) {
+		_, err := dictionary.Search(dictionary, "test")
+		want := "this is just a test"
+
+		if err == nil {
+			t.Errorf("expected to get an error.")
+		}
+
+		assertStrings(t, err.Error(), want)
+	})
+
+}
+
+func assertStrings(t *testing.T, got string, want string) {
+	t.Helper()
 
 	if got != want {
 		t.Errorf("got %q want %q given, %q", got, want, "test")
